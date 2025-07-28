@@ -28,18 +28,6 @@ Built using machine learning, MediaPipe, Django, and Google TTS, it aims to brid
 
 ---
 
-## 📁 Folder Overview
-
-hathvani/
-├── gesture_model/ → Trained ML model & prediction logic
-├── gesture_app/ → Django views, camera input, dictionary mapping, TTS
-├── templates/ → HTML frontend
-├── static/ → Optional: JavaScript, CSS
-├── media/ → Output audio files
-├── requirements.txt → Python dependencies
-└── manage.py
-
-
 ## 🛠️ Installation & Usage
 
 ```bash
