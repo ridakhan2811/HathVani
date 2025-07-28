@@ -46,7 +46,7 @@ hathvani/
 ## 🛠️ Installation & Usage
 
 ```bash
-git clone https://github.com/your-username/hathvani.git
+git clone https://github.com/ridakhan2811/hathvani.git
 cd hathvani
 pip install -r requirements.txt
 python manage.py runserver
