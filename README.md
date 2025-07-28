@@ -1,116 +1,83 @@
-🙌 Hathvani
+🤝 Hathvani – ISL to Marathi Translator
 
-Hathvani is a real-time Indian Sign Language (ISL) to Marathi text and speech converter built with Django, MediaPipe, and machine learning. It captures gestures via webcam, translates them to Marathi using a trained model, and speaks them aloud using TTS — bridging the communication gap between the deaf community and Marathi speakers.
+Hathvani is a real-time system designed to translate Indian Sign Language (ISL) gestures into Marathi text and speech. Built using machine learning, MediaPipe, Django, and Google TTS, it aims to bridge communication gaps for the deaf and hard-of-hearing community in regional language contexts.
 
-✨ Features
+🧩 Features
 
-🎥 Real-time hand gesture recognition via webcam
+Detect ISL gestures in real-time using webcam
 
-✋ ISL gesture classification using MediaPipe + ML model
+Translate ISL gestures into Marathi text
 
-📝 Marathi translation of recognized gestures
+Convert translated text into Marathi audio output
 
-🔊 Marathi voice output using Google Text-to-Speech (gTTS)
+Simple, browser-based UI using Django + JavaScript
 
-🌐 Django-powered web interface (internal HTML, CSS, JS)
+Clean folder structure, modular ML code, and expandable mapping
 
-🧰 Tech Stack
+🧠 Technologies Used
 
-🐍 Python 3.10+
+Python (Core ML + Backend)
 
-🌍 Django – Full-stack web framework
+MediaPipe – Real-time hand tracking
 
-👁️ OpenCV – Webcam frame capture
+scikit-learn – Classification model for gesture prediction
 
-🤚 MediaPipe – Hand landmark detection
+OpenCV – Webcam feed processing
 
-🧠 scikit-learn – Gesture classification model
+gTTS – Marathi text-to-speech
 
-🔈 gTTS – Marathi text-to-speech
+Django – Web application backend
 
-🧾 JavaScript + HTML + CSS – Webcam access, UI
+HTML + CSS + JS – Frontend logic and UI
 
-📁 Folder Structure
+Git & GitHub – Version control
 
-hathvani/
-├── gesture_model/
-│   ├── model.pkl              # Trained ML model
-│   └── predict.py             # Model inference logic
-├── gesture_app/
-│   ├── views.py
-│   ├── camera.py              # OpenCV + MediaPipe logic
-│   ├── mapping.py             # ISL to Marathi dictionary
-│   ├── tts.py                 # gTTS integration
-│   └── urls.py
-├── templates/
-│   └── index.html             # UI Template
-├── static/
-│   └── (Optional static files like JS/CSS)
-├── media/
-│   └── output.mp3             # Audio file playback
-├── manage.py
-└── requirements.txt
+📁 Folder Overview
 
-⚙️ Installation
+gesture_model/ → Trained ML model & prediction script
+
+gesture_app/ → Views, camera input, dictionary mapping, TTS
+
+templates/ → Frontend HTML
+
+static/ → JS, CSS (if needed)
+
+media/ → Audio output files
+
+requirements.txt → Python dependencies
+
+🛠 Installation & Usage
 
 git clone https://github.com/your-username/hathvani.git
 cd hathvani
 pip install -r requirements.txt
 python manage.py runserver
 
-Ensure:
+Visit http://127.0.0.1:8000 in your browser, allow camera access, and try signing!
 
-✅ Your system has a webcam.
+🔮 Future Scope
 
-🌐 Internet access is enabled for gTTS audio generation.
+Support for dynamic gesture sequences (RNN, LSTM)
 
-🗂️ media/ folder is writable for saving MP3s.
+Multilingual support: Hindi, Kannada, Gujarati, and more
 
-🚀 Usage
+Mobile-first UI (Progressive Web App)
 
-Open the web app in your browser.
+Offline TTS engine for limited network access
 
-Allow camera access.
+ISL sentence-level translation (combining gesture predictions)
 
-Perform an ISL gesture (e.g., Hello, Thank You).
+👥 Team Members
 
-The system will:
+Rida Khan 
 
-🧠 Detect the gesture
+Ayush Shinde 
 
-📝 Display the Marathi translation
+⚠️ Disclaimer
 
-🔊 Speak the word using TTS
+This project is made for academic, research, and development purposes. It is not yet verified for use in real-time clinical or public deployments. Further validation and community testing are required.
 
-👩‍💻 Team
+💼 Mentorship & Vision
 
-Rida Khan – ML Model, Backend Integration, Mapping, Documentation
-
-Ayush Shinde – Django Setup, Frontend (HTML/CSS/JS), Webcam Logic
-
-🔮 Future Enhancements
-
-🎬 Dynamic (video-sequence) gesture recognition
-
-🧩 Support for additional ISL gestures
-
-🌍 Language expansion beyond Marathi (Hindi, Kannada, Gujarati, etc.)
-
-🧱 Sentence-level construction using gesture combinations
-
-📱 Mobile-friendly UI with progressive web support
-
-📴 Offline TTS integration (for limited connectivity areas)
-
-💡 Purpose
-
-Hathvani is more than a project. It's a step toward inclusive communication — enabling the deaf and hard-of-hearing community to speak in Marathi, through signs and gestures.
-
-🪪 License
-
-MIT License – feel free to fork, use, and contribute.
-
-📹 Demo
-
-A short demo video will be added to showcase the live usage of Hathvani.
+Hathvani is envisioned as a real-world accessible tool to empower regional language communication for differently-abled individuals. It may evolve into a mobile and Raspberry Pi-based assistive communication device.
 
