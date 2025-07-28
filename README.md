@@ -60,7 +60,7 @@ python manage.py runserver
 ## 🔮 Future Scope
 
 * 🔁 Support for dynamic gesture sequences (using RNN/LSTM)
-* 🌐 Multilingual expansion: Hindi, Kannada, Gujarati, etc.
+* 🌐 Multilingual expansion: Marathi, English, Hindi, Kannada, Gujarati, etc.
 * 📱 Mobile-first UI using Progressive Web App (PWA) features
 * 📦 Offline TTS support for limited connectivity environments
 * 🧩 ISL sentence-level translation (via gesture sequence combinations)
