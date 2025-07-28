@@ -244,10 +244,9 @@ Here’s the structure you can use for your formal roadmap document:
 ISL (Indian Sign Language) to Marathi Text & Speech Converter
 
 2. Team Members:
-Rida Khan (Module Integration, Gesture Recognition)
+Rida Khan 
 
-[Teammate Name] (Label Mapping, TTS, Dataset Prep)
-
+Ayush Shinde
 3. Objective:
 Build a system that converts Indian Sign Language gestures into corresponding Marathi text and speech for communication aid.
 
