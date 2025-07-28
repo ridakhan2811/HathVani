@@ -1,0 +1,8 @@
+
+Django
+opencv-python
+mediapipe
+joblib
+scikit-learn
+gTTS
+numpy

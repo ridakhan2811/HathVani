@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ISL to Marathi Translator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #video {
+      border: 4px solid #4f46e5;
+      border-radius: 1rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="min-h-screen flex flex-col items-center justify-center p-6 space-y-8">
+    <h1 class="text-4xl font-bold text-indigo-600">🧠 ISL to Marathi Translator</h1>
+
+    <!-- Live Camera -->
+    <div class="flex flex-col items-center space-y-4">
+      <video id="video" width="400" height="300" autoplay></video>
+      <button onclick="captureAndSend()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg shadow hover:bg-indigo-700">
+        📸 Predict Gesture
+      </button>
+    </div>
+
+    <!-- Upload Image -->
+    <div class="mt-6">
+      <form method="POST" enctype="multipart/form-data" id="uploadForm">
+        {% csrf_token %}
+        <input type="file" name="image" accept="image/*" class="mb-4 p-2 border rounded">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+          Upload & Predict
+        </button>
+      </form>
+    </div>
+
+    <!-- Result -->
+    <div class="mt-6 text-lg">
+      {% if prediction %}
+        <p class="text-indigo-700 font-semibold">🤖 Detected Sign: <span class="underline">{{ prediction }}</span></p>
+        <p class="text-green-700 mt-2">🗣 Marathi Translation: <span class="font-bold">{{ marathi }}</span></p>
+      {% endif %}
+    </div>
+  </div>
+
+  <script>
+    // Webcam access
+    const video = document.getElementById('video');
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => video.srcObject = stream)
+      .catch(err => console.error("Webcam error:", err));
+
+    // Capture and send (stub — needs backend endpoint)
+    function captureAndSend() {
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0);
+      canvas.toBlob(blob => {
+        const formData = new FormData();
+        formData.append('image', blob, 'frame.jpg');
+        fetch('/predict/', {
+          method: 'POST',
+          body: formData,
+          headers: { 'X-CSRFToken': '{{ csrf_token }}' }
+        })
+        .then(response => response.json())
+        .then(data => {
+          alert('Predicted: ' + data.prediction + ' → Marathi: ' + data.marathi);
+          location.reload();
+        });
+      }, 'image/jpeg');
+    }
+  </script>
+</body>
+</html>
