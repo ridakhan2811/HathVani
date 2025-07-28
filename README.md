@@ -39,11 +39,6 @@ hathvani/
 ├── requirements.txt → Python dependencies
 └── manage.py
 
-yaml
-Copy
-Edit
-
----
 
 ## 🛠️ Installation & Usage
 
