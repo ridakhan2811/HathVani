@@ -1,83 +1,85 @@
-🤝 Hathvani – ISL to Marathi Translator
+# 🤝 Hathvani – ISL to Marathi Translator
 
-Hathvani is a real-time system designed to translate Indian Sign Language (ISL) gestures into Marathi text and speech. Built using machine learning, MediaPipe, Django, and Google TTS, it aims to bridge communication gaps for the deaf and hard-of-hearing community in regional language contexts.
+**Hathvani** is a real-time system designed to translate Indian Sign Language (ISL) gestures into Marathi text and speech.  
+Built using machine learning, MediaPipe, Django, and Google TTS, it aims to bridge communication gaps for the deaf and hard-of-hearing community in regional language contexts.
 
-🧩 Features
+---
 
-Detect ISL gestures in real-time using webcam
+## 🧩 Features
 
-Translate ISL gestures into Marathi text
+- 🎥 Detect ISL gestures in **real-time** using webcam  
+- 📝 Translate gestures into **Marathi text**  
+- 🔊 Convert translated text into **Marathi speech** using gTTS  
+- 🌐 Simple, browser-based UI using **Django + JavaScript**  
+- 🗃️ Clean folder structure and **modular ML pipeline**  
 
-Convert translated text into Marathi audio output
+---
 
-Simple, browser-based UI using Django + JavaScript
+## 🧠 Technologies Used
 
-Clean folder structure, modular ML code, and expandable mapping
+- 🐍 Python – Core ML + backend scripting  
+- 🖐️ MediaPipe – Real-time hand tracking  
+- 🧮 scikit-learn – Gesture classification model  
+- 🎥 OpenCV – Webcam feed capture and processing  
+- 🗣️ gTTS – Marathi text-to-speech conversion  
+- 🛠️ Django – Web backend framework  
+- 🌐 HTML + CSS + JS – UI and frontend logic  
+- 🗃️ Git & GitHub – Version control and collaboration  
 
-🧠 Technologies Used
+---
 
-Python (Core ML + Backend)
+## 📁 Folder Overview
 
-MediaPipe – Real-time hand tracking
+hathvani/
+├── gesture_model/ → Trained ML model & prediction logic
+├── gesture_app/ → Django views, camera input, dictionary mapping, TTS
+├── templates/ → HTML frontend
+├── static/ → Optional: JavaScript, CSS
+├── media/ → Output audio files
+├── requirements.txt → Python dependencies
+└── manage.py
 
-scikit-learn – Classification model for gesture prediction
+yaml
+Copy
+Edit
 
-OpenCV – Webcam feed processing
+---
 
-gTTS – Marathi text-to-speech
+## 🛠️ Installation & Usage
 
-Django – Web application backend
-
-HTML + CSS + JS – Frontend logic and UI
-
-Git & GitHub – Version control
-
-📁 Folder Overview
-
-gesture_model/ → Trained ML model & prediction script
-
-gesture_app/ → Views, camera input, dictionary mapping, TTS
-
-templates/ → Frontend HTML
-
-static/ → JS, CSS (if needed)
-
-media/ → Audio output files
-
-requirements.txt → Python dependencies
-
-🛠 Installation & Usage
-
+```bash
 git clone https://github.com/your-username/hathvani.git
 cd hathvani
 pip install -r requirements.txt
 python manage.py runserver
-
-Visit http://127.0.0.1:8000 in your browser, allow camera access, and try signing!
+🖥 Open browser and visit: http://127.0.0.1:8000
+📷 Allow webcam access and perform ISL gestures like “Hello” or “Thank you”
 
 🔮 Future Scope
+🔁 Support for dynamic gesture sequences (using RNN/LSTM)
 
-Support for dynamic gesture sequences (RNN, LSTM)
+🌐 Multilingual expansion: Hindi, Kannada, Gujarati, etc.
 
-Multilingual support: Hindi, Kannada, Gujarati, and more
+📱 Mobile-first UI using Progressive Web App (PWA) features
 
-Mobile-first UI (Progressive Web App)
+📦 Offline TTS support for limited connectivity environments
 
-Offline TTS engine for limited network access
-
-ISL sentence-level translation (combining gesture predictions)
+🧩 ISL sentence-level translation (via gesture sequence combinations)
 
 👥 Team Members
+Rida Khan – ML model development, backend integration, TTS, documentation
 
-Rida Khan 
-
-Ayush Shinde 
+Ayush Shinde – Django setup, frontend (HTML/CSS/JS), webcam logic
 
 ⚠️ Disclaimer
-
-This project is made for academic, research, and development purposes. It is not yet verified for use in real-time clinical or public deployments. Further validation and community testing are required.
+This project is developed for academic, research, and accessibility purposes.
+It is not yet clinically certified for real-world deployment. Further validation is needed.
 
 💼 Mentorship & Vision
+Hathvani is envisioned as a real-world assistive tool for regional language accessibility, enabling communication for the deaf and hard-of-hearing community.
+With future extensions, it may be deployed as a mobile app or Raspberry Pi-based embedded device.
 
-Hathvani is envisioned as a real-world accessible tool to empower regional language communication for differently-abled individuals. It may evolve into a mobile and Raspberry Pi-based assistive communication device.
+📽️ Demo
+🎥 A short demo video will be added here showcasing live gesture translation.
+
 
