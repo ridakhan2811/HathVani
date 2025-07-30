@@ -69,8 +69,8 @@ python manage.py runserver
 
 ## 👥 Team Members
 
-* **Rida Khan** – ML model development, backend integration, TTS, documentation
-* **Ayush Shinde** – Django setup, frontend (HTML/CSS/JS), webcam logic
+* **Rida Khan** 
+* **Ayush Shinde**
 
 ---
 
