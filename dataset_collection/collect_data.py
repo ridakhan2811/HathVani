@@ -10,7 +10,12 @@ os.makedirs(save_dir, exist_ok=True)
 
 # Setup MediaPipe
 mp_hands = mp.solutions.hands
-hands = mp_hands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.7)
+hands = mp_hands.Hands(
+    static_image_mode=False,
+    max_num_hands=2,  # ✅ allow both hands
+    min_detection_confidence=0.7,
+    min_tracking_confidence=0.7
+)
 mp_drawing = mp.solutions.drawing_utils
 
 # Capture from webcam
@@ -36,7 +41,7 @@ while cap.isOpened() and count < max_samples:
         for hand_landmarks in result.multi_hand_landmarks:
             mp_drawing.draw_landmarks(image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
-            # Capture 63 values
+            # Capture 63 values (x, y, z for 21 points)
             row = []
             for lm in hand_landmarks.landmark:
                 row.extend([lm.x, lm.y, lm.z])
