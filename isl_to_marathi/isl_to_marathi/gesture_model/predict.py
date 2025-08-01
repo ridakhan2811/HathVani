@@ -1,12 +1,22 @@
-import os
 import joblib
 import numpy as np
+import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(BASE_DIR, 'model.pkl')
+# Load model once at the top (so it's not reloaded every time)
+MODEL_PATH = os.path.join(os.path.dirname(__file__), 'model.pkl')
 model = joblib.load(MODEL_PATH)
 
-def predict_landmarks(landmark_list):
-    input_data = np.array(landmark_list).reshape(1, -1)
-    prediction = model.predict(input_data)
-    return prediction[0]
+def predict_landmarks(landmarks):
+    """
+    landmarks: a list or numpy array of shape (63,) representing x,y,z of 21 hand points
+    returns: predicted label (e.g., 'Hello', 'Thankyou')
+    """
+    if isinstance(landmarks, list):
+        landmarks = np.array(landmarks).reshape(1, -1)
+    elif isinstance(landmarks, np.ndarray):
+        landmarks = landmarks.reshape(1, -1)
+    else:
+        raise ValueError("Landmarks must be list or numpy array of shape (63,)")
+
+    prediction = model.predict(landmarks)[0]
+    return prediction
