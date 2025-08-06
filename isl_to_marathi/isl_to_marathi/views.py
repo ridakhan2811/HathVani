@@ -7,12 +7,11 @@ from django.conf import settings
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+import mediapipe as mp
 
 from .gesture_model.predict import predict_landmarks
 
-import mediapipe as mp
-
-# Marathi translations dictionary
+# Marathi translations
 SIGN_TO_MARATHI = {
     'Hello': 'नमस्कार',
     'Thankyou': 'धन्यवाद',
@@ -43,9 +42,9 @@ SIGN_TO_MARATHI = {
 
 # Mediapipe Setup
 mp_hands = mp.solutions.hands
-hands = mp_hands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.7)
+hands = mp_hands.Hands(static_image_mode=False, max_num_hands=2, min_detection_confidence=0.7)
 
-# Extract landmarks from image using Mediapipe
+# Extract landmarks using Mediapipe
 def extract_landmarks(image):
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     results = hands.process(image_rgb)
@@ -57,14 +56,22 @@ def extract_landmarks(image):
         return landmarks
     return None
 
-# Text-to-speech function
-def speak_marathi_text(text, filename='output.mp3'):
-    tts = gTTS(text=text, lang='mr')
-    path = os.path.join(settings.MEDIA_ROOT, filename)
-    tts.save(path)
-    return settings.MEDIA_URL + filename
+# Convert Marathi text to speech (gTTS) and return audio path
+import os
+from gtts import gTTS
+from django.conf import settings
 
-# Home page view
+def speak_marathi_text(text, filename='output.mp3'):
+    os.makedirs(settings.MEDIA_ROOT, exist_ok=True)  # ensures 'media/' exists
+
+    path = os.path.join(settings.MEDIA_ROOT, filename)
+    tts = gTTS(text=text, lang='mr')
+    tts.save(path)  # save mp3 to correct full path
+
+    return settings.MEDIA_URL + filename  # returns /media/output.mp3
+
+
+# Home page view for testing (POST via form)
 def index(request):
     if request.method == 'POST' and 'image' in request.FILES:
         img = cv2.imdecode(
@@ -87,7 +94,7 @@ def index(request):
 
     return render(request, 'index.html')
 
-# API endpoint for AJAX or real-time capture
+# Real-time prediction API (called by JS every 2 seconds)
 @csrf_exempt
 def predict_api(request):
     if request.method == 'POST' and 'image' in request.FILES:
@@ -97,21 +104,19 @@ def predict_api(request):
         )
         landmarks = extract_landmarks(img)
         if landmarks is None:
-            return JsonResponse({'error': '✋ No hand detected!'}, status=400)
+            return JsonResponse({'error': 'No hand detected'}, status=400)
 
         pred = predict_landmarks(landmarks)
-        marathi_translation = SIGN_TO_MARATHI.get(pred, 'माहित नाही')
+        marathi = SIGN_TO_MARATHI.get(pred, 'माहित नाही')
 
-        # Save audio
+        # Generate unique audio filename to prevent browser caching
         filename = f"{uuid.uuid4()}.mp3"
-        tts_path = os.path.join(settings.MEDIA_ROOT, filename)
-        tts = gTTS(text=marathi_translation, lang='mr')
-        tts.save(tts_path)
+        audio_url = speak_marathi_text(marathi, filename)
 
         return JsonResponse({
             'prediction': pred,
-            'marathi': marathi_translation,
-            'audio_file': settings.MEDIA_URL + filename
+            'marathi': marathi,
+            'audio_url': audio_url
         })
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
